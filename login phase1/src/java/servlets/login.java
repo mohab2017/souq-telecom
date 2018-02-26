@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,7 @@ ServletContext servletcontext;
 Statement stmt;
 PreparedStatement prep;
 ResultSet rs;
+Boolean islogin=true;
   public void init()
   {
         servletcontext=this.getServletContext();
@@ -61,40 +63,34 @@ ResultSet rs;
        stmt=connect.createStatement();
        String queryString = new String("Select * from users;");
        rs = stmt.executeQuery(queryString);
-      // boolean flag = false;
+      boolean flag = false;
        while (rs.next()) 
        {
         
                 if (rs.getString(1).equals(uname) && rs.getString(2).equals(password))
                 {
-                   //flag=true;
+                flag=true;
                 out.println("insertion doneee");
-				Cookie unamecookie= new Cookie("uname",uname);
+                 Cookie unamecookie= new Cookie("uname",uname);
                  unamecookie.setMaxAge(60*60*24*7);  
                  response.addCookie(unamecookie); 
                  Cookie pwdcookie= new Cookie("password",password);
                  pwdcookie.setMaxAge(60*60*24*7);  
                  response.addCookie(pwdcookie);
                 }
-                else
-                {
+       }
+       if(flag) 
+       {     }
+              else  {
                 response.sendRedirect("faild.html");
                 }
-       
-//                 else 
-//                 {
-//                  RequestDispatcher dispatcher = request.getRequestDispatcher("faild.html");
-//                  dispatcher.include(request, response);
-//                  System.out.println("login.processRequest() false flag" );
-//                 }
-       }
-       
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
     try {
         processRequest(request, response);
+    
     } catch (ClassNotFoundException ex) {
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     } catch (SQLException ex) {
