@@ -69,6 +69,12 @@ ResultSet rs;
                 {
                    //flag=true;
                 out.println("insertion doneee");
+				Cookie unamecookie= new Cookie("uname",uname);
+                 unamecookie.setMaxAge(60*60*24*7);  
+                 response.addCookie(unamecookie); 
+                 Cookie pwdcookie= new Cookie("password",password);
+                 pwdcookie.setMaxAge(60*60*24*7);  
+                 response.addCookie(pwdcookie);
                 }
                 else
                 {
