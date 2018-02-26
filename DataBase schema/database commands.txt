@@ -1,0 +1,35 @@
+DataBase creation commands:
+
+database name: souqdb
+
+table1:
+ create table users (uname text,password text,credit float,name text,birthday text,email text,job text,address text,interests text,primary key(uname));
+
+table2:
+create table items (item_id serial,item_name text,quantity int,item_photo text,price float,description text,categ_id int,primary key(item_id));
+
+table3:
+ create table categories (category_id int,items_id int,primary key(category_id));
+
+table4:
+create table cart (cart_id serial,username text,itemid int,quantity int,primary key(cart_id));
+
+table5:
+create table history(cart_id serial,username text,itemid int,quantity int,primary key(cart_id));
+
+ADDING foreign keys:
+
+1)alter table cart
+add foreign key(username) references users(uname);
+
+2)alter table cart
+add foreign key(itemid) references items(item_id);
+
+3) alter table items
+add foreign key (categ_id) references categories(category_id);
+
+4)alter table history
+add foreign key(itemid) references items(item_id);
+
+5) alter table history
+add foreign key(username) references users(uname);
