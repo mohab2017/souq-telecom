@@ -4,6 +4,7 @@
     Author     : Arwa
 --%>
 
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.SQLException"%>
@@ -93,7 +94,9 @@
 
 
 .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-    background-color: #cbb8d7;
+    /*background-color: #cbb8d7;*/
+    border-color: #ff9a9d;
+    border: solid 1px;
 }
 
 .dropdown-content {
@@ -139,7 +142,7 @@ header, footer {
     <body>
     <div class="navbar" style="text-align: center"> 
   <a>MiniSouq</a>
-  <a href="#home">Buy</a>
+  <a href="buy.jsp">Buy</a>
  
   <div class="dropdown">
     <button class="dropbtn" onclick="myFunction()">Category
@@ -153,7 +156,7 @@ header, footer {
        <a href="#news">Logout</a> 
 
     <div class="search-container">
-    <form action="/action_page.php">
+    <form action="MobileCategory.jsp">
       <input type="text" placeholder="Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
@@ -170,7 +173,42 @@ header, footer {
                   ResultSet.TYPE_SCROLL_INSENSITIVE,
                  ResultSet.CONCUR_READ_ONLY
                    );
-                  ResultSet rs= st.executeQuery("select * from items");
+                  ResultSet rs= st.executeQuery("select * from items where categ_id="+1+"");
+                  String id=request.getParameter("id");
+                  String quantity= request.getParameter("quantity"); 
+                  String keyWord=request.getParameter("search");
+                  if(keyWord!=null)
+                  {
+                      
+                      
+                  }
+                  if((id!=null)&& (quantity!=null))
+                  {       
+                             System.out.println(request.getParameter("id"));
+                              System.out.println(request.getParameter("quantity"));
+                          Cookie cookArr[] = request.getCookies();
+                          if (cookArr != null) {
+                              for (Cookie cookie : cookArr) {
+                                  if (cookie.getName().equals("uname")) {
+                                      String userName = cookie.getValue();
+                                      String sql="insert into cart (username,itemid,quantity) values(?,?,?)";
+                                      String sql2="insert into history (username,itemid,quantity) values(?,?,?)";
+                                      PreparedStatement ps= con.prepareStatement(sql);
+                                      PreparedStatement ps2= con.prepareStatement(sql2);
+                                      ps.setString(1,userName);
+                                      ps.setInt(2,Integer.parseInt(id));
+                                      ps.setInt(3, Integer.parseInt(quantity));
+                                      ps.executeUpdate();
+                                      ps2.setString(1,userName);
+                                      ps2.setInt(2,Integer.parseInt(id));
+                                      ps2.setInt(3, Integer.parseInt(quantity));
+                                      ps2.executeUpdate();
+                                  }
+
+                              }
+                          }
+                      }
+              
                 while (rs.next()) {
                        
                      out.println("<tr>");
@@ -190,16 +228,16 @@ header, footer {
                      out.println("<td>");
                      out.println("<p style=\"text-align: center\">Description:"+rs.getString(2)+"</p>");
                      out.println("<p style=\"text-align: center\">Price : "+rs.getString(5)+" LE</p>");
-                     out.println("<form style=\"text-align: center\">");
-                       out.println("<input type=\"hidden\" name=\"id\" value="+rs.getInt(1)+" >");
-                       out.println("<input type=\"submit\" value=\"Add To Cart\"/>");
+                     out.println("<form style=\"text-align: center\" action=\"MobileCategory.jsp\" method=\"POST\">");
+                     out.println("<input type=\"hidden\" name=\"id\" value="+rs.getInt(1)+" >");
+                     out.println("<input type=\"submit\" value=\"Add To Cart\"/>");
                      out.println("<select name=\"quantity\"/>");
                      
                      for(int i=1;i<=rs.getInt(3);i++)
                      {
                          out.println("<option value="+i+">"+i+"</option>");
                      }
-                     
+                     out.println("</select>");
                      out.println("</form>");
                      out.println("</td>");
                    }
@@ -208,19 +246,19 @@ header, footer {
                      out.println("<td>");
                      out.println("<p style=\"text-align: center\">Description:"+rs.getString(2)+"</p>");
                      out.println("<p style=\"text-align: center\">Price : "+rs.getString(5)+" LE</p>");
-                     out.println("<form style=\"text-align: center\">");
+                     out.println("<form style=\"text-align: center\" action=\"MobileCategory.jsp\" method=\"POST\">");
                      out.println("<input type=\"hidden\" name=\"id\" value="+rs.getInt(1)+" >");
                      out.println("<input type=\"submit\" value=\"Add To Cart\"/>");
                      out.println("<select name=\"quantity\"/>");
                      for(int i=1;i<=rs.getInt(3);i++)
                      {
-                         out.println("<option value="+i+">"+i+"</option>");
+                        out.println("<option value="+i+">"+i+"</option>");
                      }
-                     
+                     out.println("</select>");
                      out.println("</form>");
                      out.println("</td>"); 
                    }
-              out.println("</tr>"); 
+                  out.println("</tr>"); 
               } 
           }
                 catch (SQLException e) {

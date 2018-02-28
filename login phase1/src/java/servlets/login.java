@@ -44,7 +44,7 @@ ResultSet rs;
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }
     try {
-        connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "mohab2017");
+        connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "postgres");
     } catch (SQLException ex) {
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -59,7 +59,7 @@ ResultSet rs;
        password = request.getParameter("password");
         System.out.println(uname+"  "+password);
        stmt=connect.createStatement();
-       String queryString = new String("Select * from users;");
+       String queryString = new String("Select * from users");
        rs = stmt.executeQuery(queryString);
       // boolean flag = false;
        while (rs.next()) 

@@ -135,9 +135,9 @@ html,body {
 
     <div class="slider" id="main-slider"><!-- outermost container element -->
 	<div class="slider-wrapper"><!-- innermost wrapper element -->
-		<img src="mobs.jpg" alt="First" class="slide" /><!-- slides -->
-		<img src="office.jpg" alt="Second" class="slide" />
-		<img src="item.jpg" alt="Third" class="slide" />
+		<img src="item.jpg" alt="First" class="slide" /><!-- slides -->
+		<img src="htc.jpg" alt="Second" class="slide" />
+		<img src="1.jpg" alt="Third" class="slide" />
 	</div>
 </div>	
 <script>
