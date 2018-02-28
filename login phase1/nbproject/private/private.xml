@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/ahmed/Documents/GitHub/souq-telecom/login%20phase1/web/loginpage.html</file>
+            <file>file:/C:/Users/ahmed/Documents/GitHub/souq-telecom/login%20phase1/web/faild.html</file>
+            <file>file:/C:/Users/ahmed/Documents/GitHub/souq-telecom/login%20phase1/src/java/servlets/SignUp1.java</file>
+            <file>file:/C:/Users/ahmed/Documents/GitHub/souq-telecom/login%20phase1/src/java/servlets/login.java</file>
+        </group>
+>>>>>>> 1268f738e9bc1c3c64c2a5882dddb2f6f38921e6
     </open-files>
 </project-private>
