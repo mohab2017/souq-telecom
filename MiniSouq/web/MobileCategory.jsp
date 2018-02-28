@@ -139,7 +139,7 @@ header, footer {
     <body>
     <div class="navbar" style="text-align: center"> 
   <a>MiniSouq</a>
-  <a href="#home">Buy</a>
+  <a href="buy.jsp">Buy</a>
  
   <div class="dropdown">
     <button class="dropbtn" onclick="myFunction()">Category
