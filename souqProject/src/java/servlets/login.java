@@ -80,6 +80,8 @@ String adminpassword="admin";
                  Cookie userlog= new Cookie("islogin","true");
                  userlog.setMaxAge(60*60*24*7);  
                  response.addCookie(userlog); 
+                 Cookie username=new Cookie("uname",uname);
+                response.addCookie(username);
                 if (rs.getString(1).equalsIgnoreCase(adminname) && rs.getString(2).equalsIgnoreCase(adminpassword))
                 {
                 response.sendRedirect("adminpage.html");
