@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 
@@ -45,7 +47,34 @@ stmt.setString(5, description);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
 }
+ public void deleteProduct(String deleteditem_name) {
+        try {
+            String query=("UPDATE items set quantity =0 where item_name=?");
+            prep = connect.prepareStatement(query);
+            prep.setString(1,deleteditem_name);
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+//    public static void main(String[] args) {
+//        admin a = new admin();
+//        try {
+//            a.updateProduct("apple", 7);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
+    public void updateProduct(String upitem_name, int upquantityint) throws SQLException {
+        String sql = "UPDATE items set quantity = ? where item_name=?";
+        prep = connect.prepareStatement(sql);
+        prep.setInt(1,upquantityint);
+        prep.setString(2, upitem_name);
+        prep.execute();
+//         connect.commit();
+
+    }
 //public void checkAdmin(String uname,String password) throws SQLException
 //{
 //stmt=connect.createStatement();
