@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 
@@ -44,6 +46,25 @@ stmt.setInt(4, priceint);
 stmt.setString(5, description);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
+}
+public ResultSet selectAllUsers(){
+        try {
+            PreparedStatement stmt = connect.prepareStatement("Select uname from users;");
+            rs = stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return rs;
+
+}
+public void updateBalance(String name,double bal){
+         try {
+            PreparedStatement stmt = connect.prepareStatement("Update users set credit=? where uname=?;");
+         stmt.setString(2, name);  
+         rs = stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
 }
 
 //public void checkAdmin(String uname,String password) throws SQLException
