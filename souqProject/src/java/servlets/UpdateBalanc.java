@@ -27,16 +27,21 @@ public class UpdateBalanc extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          PrintWriter out = response.getWriter();
+         double balance=Double.parseDouble(request.getParameter("bal"));
+         String name=request.getParameter("name");
         try {
             admin admin1 = new admin();
-            ResultSet res=admin1.selectAllUsers();
-            while(res.next()){
-            out.println(res.getString(1));
-            }
+          int result =admin1.updateBalance(name,balance);
+            System.out.println(result);
+          if(result!=0){
+              out.println("update success the new balance = "+balance);
+          
+          }
+            
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
