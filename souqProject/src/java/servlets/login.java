@@ -64,7 +64,7 @@ String adminpassword="admin";
        uname = request.getParameter("uname");
        password = request.getParameter("password");
         System.out.println(uname+"  "+password);
-  /*     stmt=connect.createStatement();
+       stmt=connect.createStatement();
        String queryString = new String("Select * from users;");
        rs = stmt.executeQuery(queryString);
       boolean flag = false;
@@ -80,19 +80,17 @@ String adminpassword="admin";
                  Cookie userlog= new Cookie("islogin","true");
                  userlog.setMaxAge(60*60*24*7);  
                  response.addCookie(userlog); 
-                 Cookie username=new Cookie("uname",uname);
-                response.addCookie(username);
                 if (rs.getString(1).equalsIgnoreCase(adminname) && rs.getString(2).equalsIgnoreCase(adminpassword))
                 {
                 response.sendRedirect("adminpage.html");
                 }
                 }
-       }*/
-    /*   if(flag) 
+       }
+       if(flag) 
        {     }
               else  {
                 response.sendRedirect("faild.html");
-                }*/
+                }
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
