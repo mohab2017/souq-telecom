@@ -109,20 +109,18 @@ public class SignUp extends HttpServlet {
                  prep.setString(6,email);
                  prep.setString(7,jop);
                  prep.setString(8,address);
-                  prep.setString(8,interests);
-                 boolean insert= prep.execute();
+                  prep.setString(9,interests);
+               //  boolean insert= prep.execute();
+               prep.executeUpdate();
                  // out.print("insert");
-                 if(insert){
+                 //if(insert){
                  Cookie pwdcookie = new Cookie("uname",uname);
                   pwdcookie.setMaxAge(60*60*24*7);  
                  response.addCookie(pwdcookie);
                   Cookie c = new Cookie("password",password);
                   c.setMaxAge(60*60*24*7);  
                  response.addCookie(c);
-                 
-                 
-                 }
-                 
+                 response.sendRedirect("MobileCategory.jsp");
 
             }
         } catch (SQLException ex) {
