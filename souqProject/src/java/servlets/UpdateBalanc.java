@@ -27,13 +27,33 @@ public class UpdateBalanc extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          PrintWriter out = response.getWriter();
-         double balance=Double.parseDouble(request.getParameter("bal"));
          String name=request.getParameter("name");
-        try {
+        
+       //Double.parseDouble(request.getParameter("bal"));
+        out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+             out.print(" <form action='UpdateBalanc?name="+name+"' method='POST'>");
+            out.print("<input name='set' type='text'/>");
+            out.print("<input type='submit' name='edit' value='Set Balance'/>");
+            
+            out.println("</form>");
+            out.println("</body>");
+            out.println("</html>"); 
+         
+         String  name1 = request.getParameter("edit");
+         if(!name1.equals(null)){
+              try {
             admin admin1 = new admin();
+            double balance=Double.parseDouble(request.getParameter("set"));
+            out.println(balance);
           int result =admin1.updateBalance(name,balance);
             System.out.println(result);
-          if(result!=0){
+          if(result!=0){;
+                
               out.println("update success the new balance = "+balance);
           
           }
@@ -43,6 +63,10 @@ public class UpdateBalanc extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
+         }
+         
+   
        
     }
 

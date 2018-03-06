@@ -31,11 +31,27 @@ public class ListUsers extends HttpServlet {
         try {
             admin admin1 = new admin();
             ResultSet res=admin1.selectAllUsers();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
             while(res.next()){
                 
-            out.println(res.getString(1));
+            
+          out.print(" <form action='UpdateBalanc?name="+res.getString(1)+"' method='POST'>");
+            out.print("<p>"+res.getString(1));
+            out.print("<input type='submit' value='edit'/>");
+            out.print("<input type='submit' formaction=\"\" value='delete'/></p>");
+            out.println("</form>");
+           
+                            
+            
                 
             }
+             out.println("</body>");
+            out.println("</html>"); 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
