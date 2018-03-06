@@ -144,11 +144,12 @@
                             uname = cookie.getValue();
                         }
                         if (cookie.getName().equals("islogin")) {
-                            flag = true;
+                           
                             if (cookie.getValue().equals("true")) {
+                                 flag = true;
             %>
             <a href="Remove_from_cart.jsp">Edit Cart</a>
-            <a onclick="document.getElementById('id01').style.display = 'block'">Edit Profile</a>
+            <a  href="#" onclick="document.getElementById('id01').style.display = 'block'">Edit Profile</a>
             <a href="buy.jsp">Buy</a>   
             <a href="logout">Logout</a> 
             <%

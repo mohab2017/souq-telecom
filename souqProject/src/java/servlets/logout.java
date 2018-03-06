@@ -60,10 +60,14 @@ public class logout extends HttpServlet {
         Cookie[] cookie=request.getCookies();
         for(Cookie c:cookie)
         {    
-            
+             if(c.getName().equals("islogin"))
+             {
+             c.setValue("false");
              c.setMaxAge(0);
              response.addCookie(c);
-             
+             }
+             c.setMaxAge(0);
+             response.addCookie(c);
         }
        response.sendRedirect("EntryPage.jsp");
     }
