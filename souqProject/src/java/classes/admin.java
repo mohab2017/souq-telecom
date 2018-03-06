@@ -34,7 +34,7 @@ String checkstate;
 public admin() throws ClassNotFoundException, SQLException
         {
         Class.forName("org.postgresql.Driver");
-         connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "mohab2017");
+         connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "postgre");
         }
 public void addProduct(String item_name,int quantityint,String item_photo,int priceint,String description) throws SQLException
 {
@@ -47,6 +47,32 @@ stmt.setString(5, description);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
 }
+
+public ResultSet selectAllUsers(){
+        try {
+            PreparedStatement stmt = connect.prepareStatement("Select uname from users;");
+            rs = stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return rs;
+
+}
+public int updateBalance(String name,double bal){
+    int result=0;
+         try {
+             
+            PreparedStatement stmt = connect.prepareStatement("Update users set credit=? where uname=?;");
+         stmt.setString(2, name); 
+         
+         stmt.setDouble(1, bal);
+          result = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return result;
+}
+
  public void deleteProduct(String deleteditem_name) {
         try {
             String query=("UPDATE items set quantity =0 where item_name=?");
@@ -73,6 +99,7 @@ out.println("PRODUCT ADDEDDDDD ");
         prep.setString(2, upitem_name);
         prep.execute();
 //         connect.commit();
+
 
     }
 //public void checkAdmin(String uname,String password) throws SQLException
