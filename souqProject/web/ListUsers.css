@@ -29,6 +29,7 @@ and open the template in the editor.
 table {
     border-collapse: collapse;
     width: 100%;
+    align-content: center;
 }
 
 th, td {

@@ -37,7 +37,7 @@ public class ListUsers extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             while (res.next()) {
-                out.print("<div class=\"container\">");
+                //out.print("<div class=\"container\">");
                 out.print("<table class='table'>");
                 out.print(" <form action='UpdateBalanc?name=" + res.getString(1) + "' method='POST'>");
                 out.print("<tr>");                
@@ -46,7 +46,7 @@ public class ListUsers extends HttpServlet {
                 out.print("<td>"+"<input type='submit' formaction=\"\" value='Delete'/>"+"</td>"+"</p>");
                 out.println("</form>");
                 out.print("</table>");
-                out.print("</div>");
+              //  out.print("</div>");
             }
             out.println("</body>");
             out.println("</html>");            
