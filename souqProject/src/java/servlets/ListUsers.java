@@ -43,7 +43,7 @@ public class ListUsers extends HttpServlet {
                 out.print("<tr>");                
                 out.print("<p>"+"<td>" + res.getString(1)+"</td>");
                 out.print("<td>"+"<input type='submit' value='Edit'/>"+"</td>");
-                out.print("<td>"+"<input type='submit' formaction=\"\" value='Delete'/>"+"</td>"+"</p>");
+                out.print("<td>"+"<input type='submit' formaction='DeleteUser?name=" +res.getString(1)+ "' value='Delete'/>"+"</td>"+"</p>");
                 out.println("</form>");
                 out.print("</table>");
               //  out.print("</div>");
