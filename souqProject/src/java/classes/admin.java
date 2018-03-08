@@ -47,7 +47,17 @@ stmt.setString(5, description);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
 }
-
+public int deleteUser(String name){
+    int o =0;
+try {
+            PreparedStatement stmt = connect.prepareStatement("delete from users where uname=?;");
+            stmt.setString(1, name);
+            o = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+return o;
+}
 public ResultSet selectAllUsers(){
         try {
             PreparedStatement stmt = connect.prepareStatement("Select uname from users;");
