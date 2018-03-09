@@ -53,4 +53,24 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>Filter1</filter-name>
+        <filter-class>Filters.Filter1</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Filter1</filter-name>
+        <url-pattern>/login</url-pattern>
+    </filter-mapping>
+     <filter-mapping>
+        <filter-name>Filter1</filter-name>
+        <url-pattern>/SignUp</url-pattern>
+    </filter-mapping>
+     <filter-mapping>
+        <filter-name>Filter1</filter-name>
+        <url-pattern>/loginpage.html</url-pattern>
+    </filter-mapping>
+      <filter-mapping>
+        <filter-name>Filter1</filter-name>
+        <url-pattern>/SignUp.html</url-pattern>
+    </filter-mapping>
 </web-app>

@@ -29,10 +29,10 @@ public class DeleteUser extends HttpServlet {
             PrintWriter out = response.getWriter();
             String name=request.getParameter("name");
             admin admin1 = new admin();
-              int result =admin1.deleteUser(name);
-              if (result !=0){
-            out.println("user delete successed");
-              }
+//              int result =admin1.deleteUser(name);
+//              if (result !=0){
+//            out.println("user delete successed");
+//              }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
