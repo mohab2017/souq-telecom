@@ -5,6 +5,71 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+<head>
+<style>
+    body {
+    background-image: url("photo_bg.jpg");
+    background-size: cover;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #333;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="addproducts.html">ADD PRODUCT</a></li>
+  <li><a href="updateproducts.html">UPDATE PRODUCT</a></li>
+  <li><a href="deleteproducts.html">DELETE PRODUCT</a></li>
+  <li><a href="#contact">VIEW CUSTOMER'S HISTORY</a></li>
+  <li><a href="#contact">LIST CUSTOMER'S PROFILES</a></li>
+  <li><a href="#contact">UPDATE CUSTOMER'S PROFILE</a></li>
+<!--  <li style="float:right"><a href="#about">About</a></li>-->
+</ul>
+<!--<div class="centered">Souq-Telecom</div>-->
+</body>
+</html>
+
+
+
+<!--<html>
     <head>
         <title>adminpage</title>
         <meta charset="UTF-8">
@@ -25,3 +90,4 @@ and open the template in the editor.
    <a href="loginpage.html"><button>LIST</button></a>
     </body>
 </html>
+-->
