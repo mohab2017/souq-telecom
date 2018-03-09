@@ -78,6 +78,42 @@ out.println("PRODUCT ADDEDDDDD ");
 //         connect.commit();
 
     }
+    public int deleteUser(String name){
+    int o =0;
+try {
+            PreparedStatement stmt = connect.prepareStatement("delete from users where uname=?;");
+            stmt.setString(1, name);
+            o = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+return o;
+}
+public ResultSet selectAllUsers(){
+        try {
+            PreparedStatement stmt = connect.prepareStatement("Select uname from users;");
+            rs = stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return rs;
+
+}
+public int updateBalance(String name,double bal){
+    int result=0;
+         try {
+             
+            PreparedStatement stmt = connect.prepareStatement("Update users set credit=? where uname=?;");
+         stmt.setString(2, name); 
+         
+         stmt.setDouble(1, bal);
+          result = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return result;
+}
+
 //public void checkAdmin(String uname,String password) throws SQLException
 //{
 //stmt=connect.createStatement();
