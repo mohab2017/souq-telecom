@@ -131,8 +131,8 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content" id="myDropdown">
-                    <a href="MobileCategory.jsp">Mobiles</a>
-                    <a href="#">Laptops</a>
+                    <a href="MobileCategory.jsp" >Mobiles</a>
+                    <a href="LabsCategory.jsp">Laptops</a>
                 </div>
             </div> 
             <%  Cookie cook_Arr[] = request.getCookies();
@@ -147,7 +147,7 @@
                             flag = true;
                             if (cookie.getValue().equals("true")) {
             %>
-            <a href="Remove_from_cart.jsp">Edit Cart</a>
+            <a href="Remove_from_cart.jsp">Cart</a>
             <a onclick="document.getElementById('id01').style.display = 'block'">Edit Profile</a>
             <a href="buy.jsp">Buy</a>   
             <a href="logout">Logout</a> 
@@ -299,7 +299,7 @@
                                 if (rs.previous()) {
                                     out.println("<tr>");
                                     out.println("<td>");
-                                    out.println("<p style=\"text-align: center\">Description:" + rs.getString(2) + "</p>");
+                                    out.println("<p style=\"text-align: center\">" + rs.getString(2) + "</p>");
                                     out.println("<p style=\"text-align: center\">Price : " + rs.getString(5) + " LE</p>");
                                     if (rs.getInt(3) == 0) {
                                         out.println("<p style=\"text-align: center;text-decoration: line-through #f44336\">Out Of Stock</p>");
@@ -320,7 +320,7 @@
                                 }
                                 if (rs.next()) {
                                     out.println("<td>");
-                                    out.println("<p style=\"text-align: center\">Description:" + rs.getString(2) + "</p>");
+                                    out.println("<p style=\"text-align: center\">" + rs.getString(2) + "</p>");
                                     out.println("<p style=\"text-align: center\">Price : " + rs.getString(5) + " LE</p>");
                                     if (rs.getInt(3) == 0) {
                                         out.println("<p style=\"text-align: center;text-decoration: line-through #f44336\">Out Of Stock</p>");
