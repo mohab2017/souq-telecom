@@ -19,7 +19,7 @@
         <title>JSP Page</title>
         <style>
             .modal {
-                display: block; 
+                    display: block; 
                 position: fixed; /* Stay in place */
                 z-index: 1; /* Sit on top */
                 left: 0;
@@ -218,6 +218,7 @@
             }
         %>
         <script>
+            document.getElementById('id01').style.display = 'none';
             var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
