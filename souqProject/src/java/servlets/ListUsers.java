@@ -36,23 +36,34 @@ public class ListUsers extends HttpServlet {
             out.print("	<link rel=\"stylesheet\" href=\"ListUsers.css\">\n");
             out.println("</head>");
             out.println("<body>");
-            while (res.next()) {
-                //out.print("<div class=\"container\">");
-                out.print("<table id=\"customers\"'>");
-                out.print(" <tr>\n" +
+            out.print("<table id=\"customers\"'>");
+                            out.print(" <tr>\n" +
 "    <th>User</th>\n" +
 "    <th>Change Balance</th>\n" +
 "    <th>Delete</th>\n" +
 "  </tr>");
-                out.print(" <form action='UpdateBalanc?name=" + res.getString(1) + "' method='POST'>");
-                out.print("<tr>");                
-                out.print("<td>" + res.getString(1)+"</td>");
-                out.print("<td>"+"<input type='submit' value='Edit'/>"+"</td>");
-                out.print("<td>"+"<input type='submit' formaction='DeleteUser?name=" +res.getString(1)+ "' value='Delete'/>"+"</td>");
-                out.println("</form>");
-                out.print("</table>");
+            while (res.next()) {
+                //out.print("<div class=\"container\">");
+                
+                 out.print("<tr>");
+                 out.print("<td>" + res.getString(1)+"</td>");
+                 
+                 out.print(" <form action='UpdateBalanc?name=" + res.getString(1) + "' method='POST'>");
+                 out.print("<td>"+"<input type='submit' value='Edit'/>"+"</td>");
+                 out.print("<td>"+"<input type='submit' formaction='DeleteUser?name=" +res.getString(1)+ "' value='Delete'/>"+"</td>");
+                 out.println("</form>");
+                 out.print("</tr>");
+//
+//                out.print(" <form action='UpdateBalanc?name=" + res.getString(1) + "' method='POST'>");
+//                out.print("<tr>");                
+//                out.print("<td>" + res.getString(1)+"</td>");
+//                out.print("<td>"+"<input type='submit' value='Edit'/>"+"</td>");
+//                out.print("<td>"+"<input type='submit' formaction='DeleteUser?name=" +res.getString(1)+ "' value='Delete'/>"+"</td>");
+//                out.println("</form>");
+//                out.print("</table>");
               //  out.print("</div>");
             }
+            out.print("</table>");
             out.println("</body>");
             out.println("</html>");            
         } catch (ClassNotFoundException ex) {

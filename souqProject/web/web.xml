@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>user_history</servlet-name>
+        <servlet-class>servlets.user_history</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/DeleteUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>user_history</servlet-name>
+        <url-pattern>/user_history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -33,11 +41,11 @@
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>servlets.DeleteUser</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>addingProduct</servlet-name>
         <servlet-class>servlets.addingProduct</servlet-class>
     </servlet>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>addingProduct</servlet-name>
         <url-pattern>/addingProduct</url-pattern>
     </servlet-mapping>
@@ -69,15 +77,15 @@
         <filter-name>Filter1</filter-name>
         <url-pattern>/login</url-pattern>
     </filter-mapping>
-     <filter-mapping>
+    <filter-mapping>
         <filter-name>Filter1</filter-name>
         <url-pattern>/SignUp</url-pattern>
     </filter-mapping>
-     <filter-mapping>
+    <filter-mapping>
         <filter-name>Filter1</filter-name>
         <url-pattern>/loginpage.html</url-pattern>
     </filter-mapping>
-      <filter-mapping>
+    <filter-mapping>
         <filter-name>Filter1</filter-name>
         <url-pattern>/SignUp.html</url-pattern>
     </filter-mapping>

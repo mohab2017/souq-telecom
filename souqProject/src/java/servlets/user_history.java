@@ -19,57 +19,60 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ahmed
+ * @author pc
  */
-public class UpdateBalanc extends HttpServlet {
+public class user_history extends HttpServlet {
 
-  
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-         PrintWriter out = response.getWriter();
-         String name=request.getParameter("name");
-        
-       //Double.parseDouble(request.getParameter("bal"));
-        out.println("<!DOCTYPE html>");
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            String user="";
+            user=request.getParameter("upitem_name");
+            admin admin1 = new admin();
+            ResultSet res = admin1.History(user);
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet NewServlet</title>");            
+            out.print("	<link rel=\"stylesheet\" href=\"ListUsers.css\">\n");
             out.println("</head>");
             out.println("<body>");
-             out.print(" <form action='UpdateBalanc?name="+name+"' method='POST'>");
-            out.print("<input name='set' type='text'/>");
-            out.print("<input type='submit' name='edit' value='Set Balance'/>");
-            
-            out.println("</form>");
-            out.println("</body>");
-            out.println("</html>"); 
-         
-         String  name1 = request.getParameter("edit");
-         if(name1!=null){
-              try {
-            admin admin1 = new admin();
-            double balance=Double.parseDouble(request.getParameter("set"));
-            out.println(balance);
-          int result =admin1.updateBalance(name,balance);
-            System.out.println(result);
-          if(result!=0){;
+            out.print("<table id=\"customers\"'>");
+                            out.print(" <tr>\n" +
+"    <th>Username</th>\n" +
+"    <th>Item_ID</th>\n" +
+"    <th>Quantity</th>\n" +
+"  </tr>");
+            while (res.next()) {
+                //out.print("<div class=\"container\">");
                 
-              out.println("update success the new balance = "+balance);
-          
-          }
-            
+                 out.print("<tr>");
+                 out.print("<td>" + res.getString(1)+"</td>");   
+                 out.print("<td>" + res.getString(2)+"</td>");   
+                 out.print("<td>" + res.getString(3)+"</td>");   
+                 out.print("</tr>");
+    }
+        
+        out.print("</table>");
+            out.println("</body>");
+            out.println("</html>");            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-         }
-         
-   
-       
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -83,7 +86,13 @@ public class UpdateBalanc extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -97,7 +106,13 @@ public class UpdateBalanc extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(user_history.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
