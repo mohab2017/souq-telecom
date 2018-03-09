@@ -29,7 +29,6 @@ Statement stmt;
 PreparedStatement prep;
 ResultSet rs;
 String checkstate;
-int deleteval=0;
 //String item_name,item_photo,description;
 //Integer priceint,quantityint;
 public admin() throws ClassNotFoundException, SQLException
@@ -48,13 +47,47 @@ stmt.setString(5, description);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
 }
+public int deleteUser(String name){
+    int o =0;
+try {
+            PreparedStatement stmt = connect.prepareStatement("delete from users where uname=?;");
+            stmt.setString(1, name);
+            o = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+return o;
+}
+public ResultSet selectAllUsers(){
+        try {
+            PreparedStatement stmt = connect.prepareStatement("Select uname from users;");
+            rs = stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return rs;
+
+}
+public int updateBalance(String name,double bal){
+    int result=0;
+         try {
+             
+            PreparedStatement stmt = connect.prepareStatement("Update users set credit=? where uname=?;");
+         stmt.setString(2, name); 
+         
+         stmt.setDouble(1, bal);
+          result = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return result;
+}
+
  public void deleteProduct(String deleteditem_name) {
         try {
-             String query=("UPDATE items set quantity =? where item_name=?;");
+            String query=("UPDATE items set quantity =0 where item_name=?");
             prep = connect.prepareStatement(query);
-            prep.setInt(1,deleteval);
-            prep.setString(2,deleteditem_name);
-            prep.execute();
+            prep.setString(1,deleteditem_name);
         } catch (SQLException ex) {
             Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,6 +109,7 @@ out.println("PRODUCT ADDEDDDDD ");
         prep.setString(2, upitem_name);
         prep.execute();
 //         connect.commit();
+
 
     }
 //public void checkAdmin(String uname,String password) throws SQLException

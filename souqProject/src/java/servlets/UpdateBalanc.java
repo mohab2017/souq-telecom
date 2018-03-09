@@ -50,13 +50,13 @@ public class UpdateBalanc extends HttpServlet {
             admin admin1 = new admin();
             double balance=Double.parseDouble(request.getParameter("set"));
             out.println(balance);
-//          int result =admin1.updateBalance(name,balance);
-//            System.out.println(result);
-//          if(result!=0){;
-//                
-//              out.println("update success the new balance = "+balance);
-//          
-//          }
+          int result =admin1.updateBalance(name,balance);
+            System.out.println(result);
+          if(result!=0){;
+                
+              out.println("update success the new balance = "+balance);
+          
+          }
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ListUsers.class.getName()).log(Level.SEVERE, null, ex);
