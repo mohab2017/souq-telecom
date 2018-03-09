@@ -65,7 +65,7 @@ String adminpassword="admin";
        password = request.getParameter("password");
         System.out.println(uname+"  "+password);
        stmt=connect.createStatement();
-       String queryString = new String("Select * from users;");
+       String queryString = new String("Select * from users");
        rs = stmt.executeQuery(queryString);
       boolean flag = false;
        while (rs.next()) 
@@ -74,27 +74,30 @@ String adminpassword="admin";
                 
                 if (rs.getString(1).equals(uname) && rs.getString(2).equals(password))
                 {
-                   
+                    System.out.println("trueeeeeee");
                 flag=true;
-                out.println("loginnnn doneee");
                  Cookie userlog= new Cookie("islogin","true");
-                 userlog.setMaxAge(60*60*24*7);  
+//                 userlog.setMaxAge(60*60*24*7);  
                  response.addCookie(userlog); 
                  Cookie username=new Cookie("uname",uname);
                 response.addCookie(username);
-                if (rs.getString(1).equalsIgnoreCase(adminname) && rs.getString(2).equalsIgnoreCase(adminpassword))
+                if (rs.getString(1).equals(adminname) && rs.getString(2).equals(adminpassword))
                 {
                 response.sendRedirect("adminpage.html");
+                return;
+                }else
+                {
+                    response.sendRedirect("MobileCategory.jsp");
                 }
                 }
        }
-       if(flag) 
+       if(!flag) 
        {
-           response.sendRedirect("MobileCategory.jsp");
+           response.sendRedirect("loginpage.html");
        }
-              else  {
-                response.sendRedirect("faild.html");
-                }
+//              else  {
+//                response.sendRedirect("faild.html");
+//                }
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -103,9 +106,9 @@ String adminpassword="admin";
         processRequest(request, response);
     
     } catch (ClassNotFoundException ex) {
-        Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+       ex.printStackTrace();
     } catch (SQLException ex) {
-        Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
     }
     }
 //     @Override

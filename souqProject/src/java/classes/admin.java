@@ -35,7 +35,7 @@ int deleteval=0;
 public admin() throws ClassNotFoundException, SQLException
         {
         Class.forName("org.postgresql.Driver");
-         connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "mohab2017");
+         connect=DriverManager.getConnection("jdbc:postgresql://192.168.1.4:5432/souqdb", "postgres", "postgres");
         }
 public void addProduct(String item_name,int quantityint,String item_photo,int priceint,String description) throws SQLException
 {

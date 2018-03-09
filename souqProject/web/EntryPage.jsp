@@ -82,7 +82,7 @@
                 float: left;
                 font-size: 22px;
                 color: #ffcccc;
-                font-style:italic ;
+                
 
             }
 
@@ -180,7 +180,7 @@
 
     <body>
         <div class="navbar" style="background-color: #000000;text-align: center" >
-            <h1 >Souq &MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;</h1>
+            <h1 >SouqTelecom&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;</h1>
             <a href="loginpage.html">Login</a>
             <a href="SignUp.html">SignUP</a>
             <div class="dropdown">

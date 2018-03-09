@@ -33,6 +33,14 @@
         <servlet-name>DeleteUser</servlet-name>
         <servlet-class>servlets.DeleteUser</servlet-class>
     </servlet>
+        <servlet>
+        <servlet-name>addingProduct</servlet-name>
+        <servlet-class>servlets.addingProduct</servlet-class>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>addingProduct</servlet-name>
+        <url-pattern>/addingProduct</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateBalanc</servlet-name>
         <url-pattern>/UpdateBalanc</url-pattern>
