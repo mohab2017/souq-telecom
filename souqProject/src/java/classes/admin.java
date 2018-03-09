@@ -29,13 +29,12 @@ Statement stmt;
 PreparedStatement prep;
 ResultSet rs;
 String checkstate;
-int deleteval=0;
 //String item_name,item_photo,description;
 //Integer priceint,quantityint;
 public admin() throws ClassNotFoundException, SQLException
         {
         Class.forName("org.postgresql.Driver");
-         connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "mohab2017");
+         connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "postgre");
         }
 public void addProduct(String item_name,int quantityint,String item_photo,int priceint,String description) throws SQLException
 {
@@ -48,37 +47,7 @@ stmt.setString(5, description);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
 }
- public void deleteProduct(String deleteditem_name) {
-        try {
-             String query=("UPDATE items set quantity =? where item_name=?;");
-            prep = connect.prepareStatement(query);
-            prep.setInt(1,deleteval);
-            prep.setString(2,deleteditem_name);
-            prep.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-//    public static void main(String[] args) {
-//        admin a = new admin();
-//        try {
-//            a.updateProduct("apple", 7);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-
-    public void updateProduct(String upitem_name, int upquantityint) throws SQLException {
-        String sql = "UPDATE items set quantity = ? where item_name=?";
-        prep = connect.prepareStatement(sql);
-        prep.setInt(1,upquantityint);
-        prep.setString(2, upitem_name);
-        prep.execute();
-//         connect.commit();
-
-    }
-    public int deleteUser(String name){
+public int deleteUser(String name){
     int o =0;
 try {
             PreparedStatement stmt = connect.prepareStatement("delete from users where uname=?;");
@@ -114,6 +83,35 @@ public int updateBalance(String name,double bal){
     return result;
 }
 
+ public void deleteProduct(String deleteditem_name) {
+        try {
+            String query=("UPDATE items set quantity =0 where item_name=?");
+            prep = connect.prepareStatement(query);
+            prep.setString(1,deleteditem_name);
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+//    public static void main(String[] args) {
+//        admin a = new admin();
+//        try {
+//            a.updateProduct("apple", 7);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
+    public void updateProduct(String upitem_name, int upquantityint) throws SQLException {
+        String sql = "UPDATE items set quantity = ? where item_name=?";
+        prep = connect.prepareStatement(sql);
+        prep.setInt(1,upquantityint);
+        prep.setString(2, upitem_name);
+        prep.execute();
+//         connect.commit();
+
+
+    }
 //public void checkAdmin(String uname,String password) throws SQLException
 //{
 //stmt=connect.createStatement();
