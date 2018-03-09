@@ -49,7 +49,7 @@ String adminpassword="admin";
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }
     try {
-        connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "mohab2017");
+        connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "postgres");
     } catch (SQLException ex) {
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -80,6 +80,8 @@ String adminpassword="admin";
                  Cookie userlog= new Cookie("islogin","true");
                  userlog.setMaxAge(60*60*24*7);  
                  response.addCookie(userlog); 
+                 Cookie username=new Cookie("uname",uname);
+                response.addCookie(username);
                 if (rs.getString(1).equalsIgnoreCase(adminname) && rs.getString(2).equalsIgnoreCase(adminpassword))
                 {
                 response.sendRedirect("adminpage.html");
@@ -87,7 +89,9 @@ String adminpassword="admin";
                 }
        }
        if(flag) 
-       {     }
+       {
+           response.sendRedirect("MobileCategory.jsp");
+       }
               else  {
                 response.sendRedirect("faild.html");
                 }
