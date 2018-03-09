@@ -29,6 +29,7 @@ Statement stmt;
 PreparedStatement prep;
 ResultSet rs;
 String checkstate;
+int deleteval=0;
 //String item_name,item_photo,description;
 //Integer priceint,quantityint;
 public admin() throws ClassNotFoundException, SQLException
@@ -49,9 +50,11 @@ out.println("PRODUCT ADDEDDDDD ");
 }
  public void deleteProduct(String deleteditem_name) {
         try {
-            String query=("UPDATE items set quantity =0 where item_name=?");
+             String query=("UPDATE items set quantity =? where item_name=?;");
             prep = connect.prepareStatement(query);
-            prep.setString(1,deleteditem_name);
+            prep.setInt(1,deleteval);
+            prep.setString(2,deleteditem_name);
+            prep.execute();
         } catch (SQLException ex) {
             Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
         }
