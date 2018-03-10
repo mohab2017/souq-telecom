@@ -8,7 +8,6 @@ package servlets;
 import classes.admin;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mohab
  */
-public class addingProduct extends HttpServlet {
+public class updateProduct extends HttpServlet {
 
  @Override
 public void init()
@@ -32,17 +31,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
      try {
          response.setContentType("text/html;charset=UTF-8");
          PrintWriter out = response.getWriter();
-         String item_name=request.getParameter("item_name");
-         String quantity=request.getParameter("quantity");
-         int quantityint=Integer.parseInt(quantity);
-         String item_photo=request.getParameter("item_photo");
-         String price=request.getParameter("price");
-         int priceint=Integer.parseInt(price);
-         String description=request.getParameter("description");
-         String categ_id=request.getParameter("categ_id");
-         int categ_idint=Integer.parseInt(categ_id);
+         String upitem_name=request.getParameter("upitem_name");
+         String upquantity=request.getParameter("upquantity");
+         int upquantityint=Integer.parseInt(upquantity);
          admin ad=new admin();
-           out.println("<html>\n" +
+         out.println("<html>\n" +
 "    <head>\n" +
 "        <title>TODO supply a title</title>\n" +
 "        <meta charset=\"UTF-8\">\n" +
@@ -50,18 +43,19 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 "    </head>\n" +
 "    <body>\n" +
 "        <div align=\"center\">\n" +
-"            PRODUCT ADDED\n" +
+"            PRODUCT UPDATED\n" +
 "            <br><br>\n" +
 "           <a href=\"adminpage.html\"><button>Back To Adminstrator Page</button></a>\n" +
 "        </div>\n" +
 "        \n" +
 "    </body>\n" +
 "</html>\n" +
-"");
-         ad.addProduct(item_name,quantityint,item_photo,priceint,description,categ_idint);
-       
-     } catch (ClassNotFoundException | SQLException ex) {
-         Logger.getLogger(addingProduct.class.getName()).log(Level.SEVERE, null, ex);
+" ");
+         ad.updateProduct(upitem_name,upquantityint);
+     } catch (SQLException ex) {
+         Logger.getLogger(updateProduct.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(updateProduct.class.getName()).log(Level.SEVERE, null, ex);
      }
 }
 }

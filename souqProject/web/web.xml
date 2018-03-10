@@ -4,6 +4,14 @@
         <servlet-name>user_history</servlet-name>
         <servlet-class>servlets.user_history</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>servlets.deleteProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateProduct</servlet-name>
+        <servlet-class>servlets.updateProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
         <url-pattern>/DeleteUser</url-pattern>
@@ -11,6 +19,14 @@
     <servlet-mapping>
         <servlet-name>user_history</servlet-name>
         <url-pattern>/user_history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/deleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateProduct</servlet-name>
+        <url-pattern>/updateProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

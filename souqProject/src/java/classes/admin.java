@@ -34,16 +34,17 @@ String checkstate;
 public admin() throws ClassNotFoundException, SQLException
         {
         Class.forName("org.postgresql.Driver");
-         connect=DriverManager.getConnection("jdbc:postgresql://192.168.1.3:5432/souqdb", "postgres", "postgres");
+         connect=DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/souqdb", "postgres", "mohab2017");
         }
-public void addProduct(String item_name,int quantityint,String item_photo,int priceint,String description) throws SQLException
+public void addProduct(String item_name,int quantityint,String item_photo,int priceint,String description,int categ_idint) throws SQLException
 {
-PreparedStatement stmt = connect.prepareStatement("insert into items (item_name,quantity,item_photo,price,description) values (?,?,?,?,?);");
+PreparedStatement stmt = connect.prepareStatement("insert into items (item_name,quantity,item_photo,price,description,categ_id) values (?,?,?,?,?,?);");
 stmt.setString(1, item_name);
 stmt.setInt(2, quantityint);
 stmt.setString(3, item_photo);
 stmt.setInt(4, priceint);
 stmt.setString(5, description);
+stmt.setInt(6, categ_idint);
 stmt.executeUpdate();
 out.println("PRODUCT ADDEDDDDD ");
 }
