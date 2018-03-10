@@ -193,7 +193,7 @@
         <table align="center" class="paddingBetweenCols">
             <p style="text-align: center"></p>
             <%
-                String url = "jdbc:postgresql://192.168.1.4:5432/souqdb";
+                String url = "jdbc:postgresql://localhost:5432/souqdb";
                 try {
                     Connection con = DriverManager.getConnection(url, "postgres", "postgres");
                     Statement st = con.createStatement(
@@ -207,6 +207,10 @@
                     if (keyWord != null) {
                         if (keyWord.equals("mobiles")) {
                             response.sendRedirect("MobileCategory.jsp");
+                        }else if(keyWord.equals("laptop"))
+                        {
+                      response.sendRedirect("LabsCategory.jsp");
+
                         }
                     }
                     String username = request.getParameter("username");
