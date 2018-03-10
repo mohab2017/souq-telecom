@@ -33,6 +33,7 @@ public class Filter1 implements Filter {
                    String s= cookie.getValue();
                     if(s.equals("true")) {
                           flag=true;
+                    
                         ((HttpServletResponse)response).sendRedirect("MobileCategory.jsp");
                         return;
                     }

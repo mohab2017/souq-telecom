@@ -28,7 +28,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="mobileCat.css">
         <style>
+             h1{
+                float: left;
+                font-size: 22px;
+                color: #ffcccc;
+                
 
+            }
             body {font-family: Arial, Helvetica, sans-serif;}
             * {box-sizing: border-box}
             /* Full-width input fields */
@@ -126,7 +132,7 @@
 
     <body>
         <div class="navbar" style="background-color: #000000;text-align: center" > 
-            <a>MiniSouq</a>
+            <h1 >SouqTelecom&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;&MediumSpace;</h1>
             <div class="dropdown" style="background-color: #000000">
                 <button class="dropbtn" onclick="myFunction()">Category
                     <i class="fa fa-caret-down"></i>
@@ -156,7 +162,7 @@
             } else {
             %>
             <a href="loginpage.html">Login</a> 
-            <a href="SignUp.jsp">SignUp</a> 
+            <a href="SignUp.html">SignUp</a> 
             <%
                         }
                     }
@@ -165,14 +171,14 @@
                 if (!flag) {
             %>
             <a href="loginpage.html">Login</a> 
-            <a href="SignUp.jsp">SignUp</a>
+            <a href="SignUp.html">SignUp</a>
             <%
                 }
 
             } else {
             %>
             <a href="loginpage.html">Login</a> 
-            <a href="SignUp.jsp">SignUp</a> 
+            <a href="SignUp.html">SignUp</a> 
             <%
                 }
             %>

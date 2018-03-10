@@ -51,7 +51,7 @@ public class SignUp extends HttpServlet {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "postgre");
+            connect = DriverManager.getConnection("jdbc:postgresql://192.168.1.4:5432/souqdb", "postgres", "postgres");
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -109,19 +109,18 @@ public class SignUp extends HttpServlet {
                  prep.setString(6,email);
                  prep.setString(7,jop);
                  prep.setString(8,address);
-                  prep.setString(8,interests);
+                  prep.setString(9,interests);
                  boolean insert= prep.execute();
-                 // out.print("insert");
-                 if(insert){
+                // out.print("insert");
+               
                  Cookie pwdcookie = new Cookie("uname",uname);
-                  pwdcookie.setMaxAge(60*60*24*7);  
                  response.addCookie(pwdcookie);
-                  Cookie c = new Cookie("password",password);
-                  c.setMaxAge(60*60*24*7);  
+                  Cookie c = new Cookie("islogin","true");
                  response.addCookie(c);
+                 response.sendRedirect("MobileCategory.jsp");
                  
                  
-                 }
+                 
                  
 
             }

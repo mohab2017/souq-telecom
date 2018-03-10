@@ -34,7 +34,7 @@ String checkstate;
 public admin() throws ClassNotFoundException, SQLException
         {
         Class.forName("org.postgresql.Driver");
-         connect=DriverManager.getConnection("jdbc:postgresql://localhost:5432/souqdb", "postgres", "postgre");
+         connect=DriverManager.getConnection("jdbc:postgresql://192.168.1.3:5432/souqdb", "postgres", "postgres");
         }
 public void addProduct(String item_name,int quantityint,String item_photo,int priceint,String description) throws SQLException
 {
@@ -68,6 +68,17 @@ public ResultSet selectAllUsers(){
     return rs;
 
 }
+public ResultSet History(String user){
+        try {
+            PreparedStatement stmt = connect.prepareStatement("select username,itemid,quantity from history where username='"+user+"");
+            rs = stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return rs;
+
+}
+
 public int updateBalance(String name,double bal){
     int result=0;
          try {
