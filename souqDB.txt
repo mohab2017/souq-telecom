@@ -1,0 +1,375 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 10.2
+-- Dumped by pg_dump version 10.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: cart; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE cart (
+    cart_id integer NOT NULL,
+    username text,
+    itemid integer,
+    quantity integer
+);
+
+
+ALTER TABLE cart OWNER TO postgres;
+
+--
+-- Name: cart_cart_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cart_cart_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cart_cart_id_seq OWNER TO postgres;
+
+--
+-- Name: cart_cart_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cart_cart_id_seq OWNED BY cart.cart_id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE categories (
+    category_id integer NOT NULL,
+    name text
+);
+
+
+ALTER TABLE categories OWNER TO postgres;
+
+--
+-- Name: history; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE history (
+    cart_id integer NOT NULL,
+    username text,
+    itemid integer,
+    quantity integer
+);
+
+
+ALTER TABLE history OWNER TO postgres;
+
+--
+-- Name: history_cart_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE history_cart_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE history_cart_id_seq OWNER TO postgres;
+
+--
+-- Name: history_cart_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE history_cart_id_seq OWNED BY history.cart_id;
+
+
+--
+-- Name: items; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE items (
+    item_id integer NOT NULL,
+    item_name text,
+    quantity integer,
+    item_photo text,
+    price double precision,
+    description text,
+    categ_id integer
+);
+
+
+ALTER TABLE items OWNER TO postgres;
+
+--
+-- Name: items_item_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE items_item_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE items_item_id_seq OWNER TO postgres;
+
+--
+-- Name: items_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE items_item_id_seq OWNED BY items.item_id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE users (
+    uname text NOT NULL,
+    password text,
+    credit double precision,
+    name text,
+    birthday text,
+    email text,
+    job text,
+    address text,
+    interests text
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- Name: cart cart_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cart ALTER COLUMN cart_id SET DEFAULT nextval('cart_cart_id_seq'::regclass);
+
+
+--
+-- Name: history cart_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY history ALTER COLUMN cart_id SET DEFAULT nextval('history_cart_id_seq'::regclass);
+
+
+--
+-- Name: items item_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY items ALTER COLUMN item_id SET DEFAULT nextval('items_item_id_seq'::regclass);
+
+
+--
+-- Data for Name: cart; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cart (cart_id, username, itemid, quantity) FROM stdin;
+50	arwa	2	1
+\.
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY categories (category_id, name) FROM stdin;
+1	Mobiles
+2	Labtops
+\.
+
+
+--
+-- Data for Name: history; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY history (cart_id, username, itemid, quantity) FROM stdin;
+8	arwa	3	1
+9	arwa	1	1
+10	arwa	2	2
+11	arwa	3	1
+12	arwa	3	1
+13	arwa	3	1
+14	arwa	3	1
+15	arwa	3	3
+\.
+
+
+--
+-- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY items (item_id, item_name, quantity, item_photo, price, description, categ_id) FROM stdin;
+1	Apple iPhone 6s	12	1.jpg	8800	4.7" LED-backlit IPS LCD Capacitive Touch Screen\n16 GB Internal Storage\n12 MP Back Camera, Dual-LED (dual tone) flash, 5 MP Front Camera\nDual Core 1.8 GHz CPU, 2 GB RAM\nOS: iOS 9\nFingerprint sensor built into the Home button	1
+2	HTC Desire 10 Pro	6	htc10.jpg	6000	\N	1
+3	Infinix Hot	0	infinix.jpg	2045	\N	1
+4	hp Note Book	5	hp.jpg	10000	\N	2
+5	Dell Inspiron 3567	9	dell.jpg	9000	\N	2
+6	Lenovo Ideapad 520 	5	len.jpg	18000	\N	2
+7	Apple mac book pro	10	apple.jpg	34000	\N	2
+9	sony	0	sony.jpg	20000	sony	1
+10	x	10	sony.jpg	20000	,	1
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (uname, password, credit, name, birthday, email, job, address, interests) FROM stdin;
+admin	admin	10000	admin	12/8/1994	manooosh_emogirl@yahoo.com	,k,n	lklj	lkm;l
+omnia 	123456	10000	omnia	12/8/1994	omniakhaled29@gmail.com	,k,n	lklj	lkm;l
+arwa	123456	50000	arwa_mohamed	12-8-1994	arwaali467@gmail.com	eng	Damietta	reading
+\.
+
+
+--
+-- Name: cart_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cart_cart_id_seq', 53, true);
+
+
+--
+-- Name: history_cart_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('history_cart_id_seq', 15, true);
+
+
+--
+-- Name: items_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('items_item_id_seq', 10, true);
+
+
+--
+-- Name: cart cart_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cart
+    ADD CONSTRAINT cart_pkey PRIMARY KEY (cart_id);
+
+
+--
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (category_id);
+
+
+--
+-- Name: history history_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY history
+    ADD CONSTRAINT history_pkey PRIMARY KEY (cart_id);
+
+
+--
+-- Name: items items_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY items
+    ADD CONSTRAINT items_pkey PRIMARY KEY (item_id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (uname);
+
+
+--
+-- Name: cart cart_itemid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cart
+    ADD CONSTRAINT cart_itemid_fkey FOREIGN KEY (itemid) REFERENCES items(item_id);
+
+
+--
+-- Name: history delete_uname; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY history
+    ADD CONSTRAINT delete_uname FOREIGN KEY (username) REFERENCES users(uname) ON DELETE CASCADE;
+
+
+--
+-- Name: history history_itemid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY history
+    ADD CONSTRAINT history_itemid_fkey FOREIGN KEY (itemid) REFERENCES items(item_id);
+
+
+--
+-- Name: items items_categ_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY items
+    ADD CONSTRAINT items_categ_id_fkey FOREIGN KEY (categ_id) REFERENCES categories(category_id);
+
+
+--
+-- Name: history update_delete_uname; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY history
+    ADD CONSTRAINT update_delete_uname FOREIGN KEY (username) REFERENCES users(uname) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: cart update_delete_uname; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cart
+    ADD CONSTRAINT update_delete_uname FOREIGN KEY (username) REFERENCES users(uname) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
