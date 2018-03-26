@@ -49,7 +49,7 @@ String adminpassword="admin";
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }
     try {
-        connect=DriverManager.getConnection("jdbc:postgresql://192.168.1.4:5432/souqdb", "postgres", "mohab2017");
+        connect=DriverManager.getConnection("jdbc:postgresql://localhost/souqdb", "postgres", "postgres");
     } catch (SQLException ex) {
         Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
     }

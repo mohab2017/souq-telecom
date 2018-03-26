@@ -63,7 +63,7 @@
     <body>
         <%
 
-            String url = "jdbc:postgresql://192.168.1.4:5432/souqdb";
+            String url = "jdbc:postgresql://localhost:5432/souqdb";
 
             try {
                 Class.forName("org.postgresql.Driver");
